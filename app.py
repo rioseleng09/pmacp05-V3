@@ -49,10 +49,13 @@ def main():
         # Load the model
         model = load_model()
 
-        # Get diagnosis
-        result = diagnosis(uploaded_file, model)
-        
-        st.success(f"The predicted diagnosis is: {result}")
+        try:
+            # Get diagnosis
+            result = diagnosis(uploaded_file, model)
+            st.success(f"The predicted diagnosis is: {result}")
+        except Exception as e:
+            st.error(f"Error during diagnosis: {e}")
+            print("Error during diagnosis:", e)
 
 if __name__ == "__main__":
     main()
