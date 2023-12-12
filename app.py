@@ -31,7 +31,7 @@ def diagnosis(file, model, IMM_SIZE):
     predicted_class = np.argmax(predicted_probabilities, axis=-1)[0]
 
     # Map the predicted class to the diagnosis
-    diagnosis_mapping = {0: "Normal", 1: "Covid", 2: "Viral Pneumonia"}
+    diagnosis_mapping = {0: "Viral Pneumonia", 1: "Covid", 2: "Normal"}
     predicted_diagnosis = diagnosis_mapping[predicted_class]
 
     return predicted_diagnosis
