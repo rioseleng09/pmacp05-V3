@@ -31,7 +31,7 @@ def diagnosis(file, model):
     predicted_class = np.argmax(predicted_probabilities, axis=-1)[0]
 
     # Map the predicted class to the diagnosis
-    diagnosis_mapping = {0: "Diagnosis_A", 1: "Diagnosis_B", 2: "Diagnosis_C"}
+    diagnosis_mapping = {0: "Covid", 1: "Normal", 2: "Viral Pneumonia"}
     predicted_diagnosis = diagnosis_mapping[predicted_class]
 
     return predicted_diagnosis
