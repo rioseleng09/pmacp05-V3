@@ -19,7 +19,7 @@ def load_model():
     return model
 
 # Function to make a diagnosis
-def diagnosis(file, model):
+def diagnosis(file, model, IMM_SIZE):
     # Load and preprocess the image
     img = image.load_img(file, target_size=(IMM_SIZE, IMM_SIZE), color_mode="grayscale")
     img_array = image.img_to_array(img)
@@ -31,7 +31,7 @@ def diagnosis(file, model):
     predicted_class = np.argmax(predicted_probabilities, axis=-1)[0]
 
     # Map the predicted class to the diagnosis
-    diagnosis_mapping = {0: "Covid", 1: "Normal", 2: "Viral Pneumonia"}
+    diagnosis_mapping = {0: "Diagnosis_A", 1: "Diagnosis_B", 2: "Diagnosis_C"}
     predicted_diagnosis = diagnosis_mapping[predicted_class]
 
     return predicted_diagnosis
@@ -49,13 +49,17 @@ def main():
         # Load the model
         model = load_model()
 
+        # Specify the image size
+        IMM_SIZE = 224
+
         try:
             # Get diagnosis
-            result = diagnosis(uploaded_file, model)
+            result = diagnosis(uploaded_file, model, IMM_SIZE)
             st.success(f"The predicted diagnosis is: {result}")
         except Exception as e:
             st.error(f"Error during diagnosis: {e}")
             print("Error during diagnosis:", e)
+
 
 if __name__ == "__main__":
     main()
