@@ -18,6 +18,8 @@ def load_model():
 
     return model
 
+# ...
+
 # Function to make a diagnosis
 def diagnosis(file, model, IMM_SIZE):
     # Load and preprocess the image
@@ -31,14 +33,16 @@ def diagnosis(file, model, IMM_SIZE):
     predicted_class = np.argmax(predicted_probabilities, axis=-1)[0]
 
     # Map the predicted class to the diagnosis
-    diagnosis_mapping = {0: "Normal", 1: "Covid", 2: "Viral Pneumonia"}
+    diagnosis_mapping = {0: "Normal", 1: "COVID", 2: "Pneumonia"}
     predicted_diagnosis = diagnosis_mapping[predicted_class]
 
     return predicted_diagnosis
 
+# ...
+
 # Main Streamlit app
 def main():
-    st.title("Medical Image Diagnosis App")
+    st.title("Chest X-ray Image Diagnosis App")
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
     if uploaded_file is not None:
@@ -59,6 +63,8 @@ def main():
         except Exception as e:
             st.error(f"Error during diagnosis: {e}")
             print("Error during diagnosis:", e)
+
+# ...
 
 
 if __name__ == "__main__":
